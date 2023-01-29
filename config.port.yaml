@@ -1,0 +1,48 @@
+# 应用配置
+app:
+  host: "127.0.0.1"
+  port: ":8000"
+
+# mysql配置
+mysql:
+  enable: true
+  user: root
+  password: 123456
+  host: 127.0.0.1
+  port: 3306
+  dbname: admin_nuzn
+
+# redis配置
+redis:
+  enable: true
+  host: "127.0.0.1"
+  port: "6379"
+  database: 1
+  password: ""
+
+# 日志配置
+zap:
+  #日志文件的位置，也就是路径
+  filename: "./logs/log.txt"
+  #在进行切割之前，日志文件的最大大小（以MB为单位）
+  maxSize: 10
+  #保留旧文件的最大个数
+  maxBackups: 10
+  #保留旧文件的最大天数
+  maxAges: 180
+  #是否压缩/归档旧文件
+  compress: false
+
+os:
+  domain: "http://127.0.0.1:8000/public/"
+
+#单位(60秒*60*24) 24小时
+jwt:
+  secret: "whatthefuck123weishenmebuneng123"
+  expire: 86400
+
+md5:
+  hash: "asdsad!#$FREWE12314"
+
+debug: true
+
