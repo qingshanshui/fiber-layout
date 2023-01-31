@@ -1,23 +1,27 @@
-package conf
+package config
 
 import (
+	"flag"
 	"fmt"
-	"os"
-
+	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
+	"os"
 )
 
 func init() {
-	// conf := Conf{}
-	// conf.InitConfigYaml()
+	var mode string
+	flag.StringVar(&mode, "mode", "dev", "开发dev，生产prod")
+	flag.Parse()
 	workDir, _ := os.Getwd()
-	fmt.Println(workDir, "work")
-	viper.SetConfigName("config.dev")
+	viper.SetConfigName("config." + mode)
 	viper.SetConfigType("yml")
 	viper.AddConfigPath(workDir + "/config")
 	err := viper.ReadInConfig()
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println("读取失败-------------------------------")
+	viper.WatchConfig()
+	viper.OnConfigChange(func(e fsnotify.Event) {
+		fmt.Println("配置发生变化的文件：", e.Name)
+	})
 }

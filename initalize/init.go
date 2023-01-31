@@ -1,7 +1,7 @@
 package initalize
 
 import (
-	"fiber-layout/conf"
+	"github.com/spf13/viper"
 	"sync"
 )
 
@@ -9,10 +9,10 @@ var once sync.Once
 
 func init() {
 	once.Do(func() {
-		if conf.Config.Mysql.Enable {
+		if viper.GetBool("Mysql.Enable") {
 			InitDatabaseMysql()
 		}
-		if conf.Config.Redis.Enable {
+		if viper.GetBool("Redis.Enable") {
 			initDatabaseRedis()
 		}
 	})

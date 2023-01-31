@@ -15,7 +15,9 @@ go env -w GO111MODULE=on
 go mod download
 
 # 运行项目
-go run main.go
+go run main.go #默认启动开发环境
+go run main.go -mode dev #开发环境
+go run main.go -mode prod #生产环境
 
 # 项目起来后执行下面命令访问示例路由
 curl "http://127.0.0.1:3000/v1/register?username=admin&password=132456"
