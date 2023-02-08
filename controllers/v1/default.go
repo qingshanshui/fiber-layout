@@ -5,6 +5,7 @@ import (
 	"fiber-layout/service"
 	"fiber-layout/validator"
 	"fiber-layout/validator/form"
+	"fmt"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -16,30 +17,25 @@ func NewDefaultController() *DefaultController {
 	return &DefaultController{}
 }
 
-func (t *DefaultController) Register(c *fiber.Ctx) error {
-	// 初始化参数结构体
-	loginForm := form.Register{}
-	// 绑定参数并使用验证器验证参数
-	if err := validator.CheckQueryParams(c, &loginForm); err != nil {
-		return err
-	}
+func (t *DefaultController) GetList(c *fiber.Ctx) error {
 	// 实际业务调用
-	api, err := service.NewDefaultService().Register(loginForm)
+	api, err := service.NewDefaultService().GetList()
 	if err != nil {
 		return c.JSON(t.Fail(err))
 	}
+	fmt.Println(api)
 	return c.JSON(t.Ok(api)) // => ✋ register
 }
 
-func (t *DefaultController) Login(c *fiber.Ctx) error {
+func (t *DefaultController) Category(c *fiber.Ctx) error {
 	// 初始化参数结构体
-	loginForm := form.Login{}
+	categoryForm := form.Category{}
 	// 绑定参数并使用验证器验证参数
-	if err := validator.CheckPostParams(c, &loginForm); err != nil {
+	if err := validator.CheckPostParams(c, &categoryForm); err != nil {
 		return err
 	}
 	// 实际业务调用
-	api, err := service.NewDefaultService().Login(loginForm)
+	api, err := service.NewDefaultService().Category(categoryForm)
 	if err != nil {
 		return c.JSON(t.Fail(err, 309))
 	}

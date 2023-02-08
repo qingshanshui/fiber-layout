@@ -16,8 +16,7 @@ func init() {
 	viper.SetConfigName("config." + mode)    // 配置文件名称
 	viper.SetConfigType("yml")               // 配置文件类型
 	viper.AddConfigPath(workDir + "/config") // 配置文件路径
-	err := viper.ReadInConfig()
-	if err != nil {
+	if err := viper.ReadInConfig(); err != nil {
 		panic(err)
 	}
 	// 动态加载配置文件

@@ -9,9 +9,7 @@ func SetRoute(app *fiber.App) {
 
 	main := v1.NewDefaultController()
 	group := app.Group("/v1")
-	// GET /register 	get
-	group.Get("/register", main.Register)
-	// GET /login 	json
-	group.Post("/login", main.Login)
+	group.Get("/getList", main.GetList)    // 列表
+	group.Post("/category", main.Category) // 详情
 
 }
