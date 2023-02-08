@@ -2,7 +2,6 @@ package initalize
 
 import (
 	"context"
-	"fmt"
 	"github.com/go-redis/redis/v8"
 	"github.com/spf13/viper"
 )
@@ -21,5 +20,4 @@ func initDatabaseRedis() {
 	if err != nil {
 		panic("Redis 链接 失败：" + err.Error())
 	}
-	fmt.Println("redis 链接成功")
 }

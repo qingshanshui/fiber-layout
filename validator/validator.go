@@ -14,7 +14,6 @@ func CheckQueryParams(c *fiber.Ctx, obj interface{}) error {
 	}
 	return nil
 }
-
 func CheckPostParams(c *fiber.Ctx, obj interface{}) error {
 	if err := c.BodyParser(obj); err != nil {
 		return err
@@ -25,6 +24,7 @@ func CheckPostParams(c *fiber.Ctx, obj interface{}) error {
 	return nil
 }
 
+// 验证字段
 func validateStruct(obj interface{}) error {
 	valid := validator.New()
 	err := valid.Struct(obj)

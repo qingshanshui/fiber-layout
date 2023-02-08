@@ -8,7 +8,6 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
-	"log"
 )
 
 func main() {
@@ -23,5 +22,6 @@ func main() {
 	app.Use(recover.New())
 	// 设置路由
 	routers.SetRoute(app)
-	log.Fatal(app.Listen(":3000"))
+	// 监听端口
+	_ = app.Listen(":3000")
 }

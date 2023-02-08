@@ -2,7 +2,6 @@ package initalize
 
 import (
 	"fiber-layout/pkg/utils"
-	"fmt"
 	"github.com/spf13/viper"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -15,7 +14,6 @@ func InitDatabaseMysql() {
 	//初始化数据库
 	mysqlUrl := utils.StringBytesBufferJoin(viper.GetString("Mysql.User"), ":", viper.GetString("Mysql.Password"), "@tcp(", viper.GetString("Mysql.Host"), ":",
 		viper.GetString("Mysql.Port"), ")/", viper.GetString("Mysql.DbName"), "?charset=utf8&parseTime=True&loc=Local")
-	fmt.Println(mysqlUrl, "mysqlUrl============")
 	db, err := gorm.Open(mysql.New(mysql.Config{
 		DSN:                       mysqlUrl, // DSN data source name
 		DefaultStringSize:         256,      // string 类型字段的默认长度
@@ -29,6 +27,5 @@ func InitDatabaseMysql() {
 	if err != nil {
 		panic("mysql数据库链接失败gorm")
 	}
-	fmt.Println("mysql 链接成功")
 	DB = db
 }

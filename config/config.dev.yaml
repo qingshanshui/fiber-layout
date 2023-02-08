@@ -5,7 +5,7 @@ app:
 
 # mysql配置
 mysql:
-  enable: true
+  enable: false
   user: root
   password: 123456
   host: 127.0.0.1
@@ -14,7 +14,7 @@ mysql:
 
 # redis配置
 redis:
-  enable: true
+  enable: false
   host: "127.0.0.1"
   port: "6379"
   database: 1
