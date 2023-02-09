@@ -2,10 +2,11 @@ package v1
 
 import (
 	"fiber-layout/controllers"
+	"fiber-layout/initalize"
 	"fiber-layout/service"
 	"fiber-layout/validator"
 	"fiber-layout/validator/form"
-	"fmt"
+
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -23,7 +24,7 @@ func (t *DefaultController) GetList(c *fiber.Ctx) error {
 	if err != nil {
 		return c.JSON(t.Fail(err))
 	}
-	fmt.Println(api)
+	initalize.Log.Info(api)
 	return c.JSON(t.Ok(api)) // => ✋ register
 }
 

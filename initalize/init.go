@@ -1,8 +1,9 @@
 package initalize
 
 import (
-	"github.com/spf13/viper"
 	"sync"
+
+	"github.com/spf13/viper"
 )
 
 var once sync.Once
@@ -15,6 +16,9 @@ func init() {
 		}
 		if viper.GetBool("Redis.Enable") {
 			initDatabaseRedis()
+		}
+		if viper.GetBool("Zap.Enable") {
+			InitDatabaseLogger()
 		}
 	})
 }
