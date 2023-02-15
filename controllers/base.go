@@ -21,10 +21,10 @@ func (r *Base) Ok(data interface{}) fiber.Map {
 }
 
 // Fail 失败
-func (r *Base) Fail(data interface{}, code ...int) fiber.Map {
+func (r *Base) Fail(err error, code ...int) fiber.Map {
 	return fiber.Map{
 		"code": If(code),
-		"data": data,
+		"data": err.Error(),
 		"msg":  "操作失败",
 	}
 }
