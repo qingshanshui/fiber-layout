@@ -18,9 +18,9 @@ func NewDefaultController() *DefaultController {
 	return &DefaultController{}
 }
 
-func (t *DefaultController) GetList(c *fiber.Ctx) error {
+func (t *DefaultController) List(c *fiber.Ctx) error {
 	// 实际业务调用
-	api, err := service.NewDefaultService().GetList()
+	api, err := service.NewDefaultService().List()
 	if err != nil {
 		initalize.Log.Info(err)
 		return c.Status(500).JSON(t.Fail(err))
@@ -30,9 +30,10 @@ func (t *DefaultController) GetList(c *fiber.Ctx) error {
 
 func (t *DefaultController) Category(c *fiber.Ctx) error {
 	// 初始化参数结构体
-	categoryForm := form.Category{}
+	categoryForm := form.CategoryRequest{}
 	// 绑定参数并使用验证器验证参数
 	if err := validator.CheckPostParams(c, &categoryForm); err != nil {
+		initalize.Log.Info(err)
 		return err
 	}
 	// 实际业务调用

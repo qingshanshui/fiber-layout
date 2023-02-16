@@ -14,12 +14,12 @@ func NewCourse() *Course {
 	return &Course{}
 }
 
-func (t *Course) GetList() ([]Course, error) {
-	var sys []Course
-	if err := initalize.DB.Raw("select * from Course LIMIT 10").Find(&sys).Error; err != nil {
+func (t *Course) List() ([]Course, error) {
+	var result []Course
+	if err := initalize.DB.Raw("select * from Course LIMIT 10").Find(&result).Error; err != nil {
 		return nil, err
 	}
-	return sys, nil
+	return result, nil
 }
 
 func (t *Course) Category(id string) (*Course, error) {

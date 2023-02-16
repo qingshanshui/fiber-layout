@@ -4,10 +4,12 @@ import (
 	_ "fiber-layout/config"
 	_ "fiber-layout/initalize"
 	"fiber-layout/routers"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
+	"github.com/spf13/viper"
 )
 
 func main() {
@@ -23,5 +25,5 @@ func main() {
 	// 设置路由
 	routers.SetRoute(app)
 	// 监听端口
-	_ = app.Listen(":3000")
+	_ = app.Listen(viper.GetString("App.Port"))
 }
