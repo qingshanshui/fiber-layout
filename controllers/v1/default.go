@@ -32,7 +32,7 @@ func (t *DefaultController) Category(c *fiber.Ctx) error {
 	// 初始化参数结构体
 	categoryForm := form.CategoryRequest{}
 	// 绑定参数并使用验证器验证参数
-	if err := validator.CheckPostParams(c, &categoryForm); err != nil {
+	if err := validator.CheckQueryParams(c, &categoryForm); err != nil {
 		initalize.Log.Info(err)
 		return err
 	}

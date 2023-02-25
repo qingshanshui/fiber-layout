@@ -1,12 +1,17 @@
 package validator
 
 import (
+	"errors"
+	"fmt"
+	"reflect"
+
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
 )
 
 // GET
 func CheckQueryParams(c *fiber.Ctx, obj interface{}) error {
+	fmt.Println("进入query啦")
 	if err := c.QueryParser(obj); err != nil {
 		return err
 	}
@@ -32,7 +37,43 @@ func validateStruct(obj interface{}) error {
 	valid := validator.New()
 	err := valid.Struct(obj)
 	if err != nil {
-		return err
+		s := ProcessErr(obj, err)
+		fmt.Println(s, "---------")
+		return errors.New(s)
 	}
+	fmt.Println(err, "**********")
 	return nil
+}
+
+// ProcessErr go validator参数校验器自定义规则及提示
+func ProcessErr(u interface{}, err error) string {
+	if err == nil { //如果为nil 说明校验通过
+		return ""
+	}
+	invalid, ok := err.(*validator.InvalidValidationError) //如果是输入参数无效，则直接返回输入参数错误
+	if ok {
+		return "输入参数错误：" + invalid.Error()
+	}
+	validationErrs := err.(validator.ValidationErrors) //断言是ValidationErrors
+	for _, validationErr := range validationErrs {
+		fieldName := validationErr.Field() //获取是哪个字段不符合格式
+		typeOf := reflect.TypeOf(u)
+		// 如果是指针，获取其属性
+		if typeOf.Kind() == reflect.Ptr {
+			typeOf = typeOf.Elem()
+		}
+		field, ok := typeOf.FieldByName(fieldName) //通过反射获取filed
+		fmt.Println(field, ok, "field,ok")
+		if ok {
+			errorInfo := field.Tag.Get("validate_error") // 获取field对应的validate_error tag值
+			if errorInfo != "" {
+				return fieldName + ":" + errorInfo // 返回错误
+			} else {
+				return "缺失validate_error"
+			}
+		} else {
+			return "系统错误：获取不到反射体"
+		}
+	}
+	return ""
 }

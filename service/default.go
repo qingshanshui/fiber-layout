@@ -21,7 +21,7 @@ func (t *Default) List() ([]models.Course, error) {
 }
 
 func (t *Default) Category(c v1.CategoryRequest) (*models.Course, error) {
-	list, err := models.NewCourse().Category(c.ID)
+	list, err := models.NewCourse().Category(c.Id)
 	if err != nil {
 		return nil, err
 	}
