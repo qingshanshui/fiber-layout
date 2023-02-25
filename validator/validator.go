@@ -37,15 +37,11 @@ func validateStruct(obj interface{}) error {
 	valid := validator.New()
 	err := valid.Struct(obj)
 	if err != nil {
-		s := ProcessErr(obj, err)
-		fmt.Println(s, "---------")
-		return errors.New(s)
+		return errors.New(ProcessErr(obj, err))
 	}
-	fmt.Println(err, "**********")
 	return nil
 }
 
-// ProcessErr go validator参数校验器自定义规则及提示
 func ProcessErr(u interface{}, err error) string {
 	if err == nil { //如果为nil 说明校验通过
 		return ""
