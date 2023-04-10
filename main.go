@@ -2,9 +2,9 @@ package main
 
 import (
 	_ "fiber-layout/config"
-	_ "fiber-layout/initalize"
+	"fiber-layout/initalize"
+	"fiber-layout/models"
 	"fiber-layout/routers"
-
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
@@ -24,6 +24,16 @@ func main() {
 	app.Use(recover.New())
 	// 设置路由
 	routers.SetRoute(app)
+	// 初始化 数据表
+	err := initalize.DB.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(&models.Course{})
+	if err != nil {
+		initalize.Log.Error("数据库表生成失败：", err)
+		panic("数据库表，生成失败")
+	}
 	// 监听端口
-	_ = app.Listen(viper.GetString("App.Port"))
+	err = app.Listen(viper.GetString("App.Port"))
+	if err != nil {
+		initalize.Log.Error("项目启动失败：", err)
+		panic("项目启动失败")
+	}
 }
