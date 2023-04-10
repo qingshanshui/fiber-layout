@@ -3,10 +3,13 @@ package v1
 import (
 	"fiber-layout/controllers"
 	"fiber-layout/initalize"
+	"fiber-layout/pkg/utils"
 	"fiber-layout/service"
 	"fiber-layout/validator"
 	"fiber-layout/validator/form"
 	"github.com/gofiber/fiber/v2"
+	"github.com/spf13/viper"
+	"time"
 )
 
 type DefaultController struct {
@@ -19,12 +22,23 @@ func NewDefaultController() *DefaultController {
 
 // List 列表
 func (t *DefaultController) List(c *fiber.Ctx) error {
+
 	// 实际业务调用
 	api, err := service.NewDefaultService().List()
 	if err != nil {
 		initalize.Log.Info(err)
 		return c.Status(500).JSON(t.Fail(err))
 	}
+	// 设置cookie
+	cookie := new(fiber.Cookie)
+	cookie.Name = "token"
+	token, err := utils.CreateToken("123456", viper.GetString("Jwt.Secret"))
+	if err != nil {
+		return err
+	}
+	cookie.Value = token
+	cookie.Expires = time.Now().Add(24 * time.Hour)
+	c.Cookie(cookie)
 	return c.JSON(t.Ok(api))
 }
 
