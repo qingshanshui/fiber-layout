@@ -2,16 +2,13 @@ package validator
 
 import (
 	"errors"
-	"fmt"
-	"reflect"
-
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
+	"reflect"
 )
 
-// GET
+// CheckQueryParams GET验证
 func CheckQueryParams(c *fiber.Ctx, obj interface{}) error {
-	fmt.Println("进入query啦")
 	if err := c.QueryParser(obj); err != nil {
 		return err
 	}
@@ -21,7 +18,7 @@ func CheckQueryParams(c *fiber.Ctx, obj interface{}) error {
 	return nil
 }
 
-// POST
+// CheckPostParams POST验证
 func CheckPostParams(c *fiber.Ctx, obj interface{}) error {
 	if err := c.BodyParser(obj); err != nil {
 		return err
@@ -32,7 +29,6 @@ func CheckPostParams(c *fiber.Ctx, obj interface{}) error {
 	return nil
 }
 
-// 效验字段
 func validateStruct(obj interface{}) error {
 	valid := validator.New()
 	err := valid.Struct(obj)
@@ -59,7 +55,6 @@ func ProcessErr(u interface{}, err error) string {
 			typeOf = typeOf.Elem()
 		}
 		field, ok := typeOf.FieldByName(fieldName) //通过反射获取filed
-		fmt.Println(field, ok, "field,ok")
 		if ok {
 			errorInfo := field.Tag.Get("validate_error") // 获取field对应的validate_error tag值
 			if errorInfo != "" {
