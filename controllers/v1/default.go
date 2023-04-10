@@ -6,7 +6,6 @@ import (
 	"fiber-layout/service"
 	"fiber-layout/validator"
 	"fiber-layout/validator/form"
-
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -18,6 +17,7 @@ func NewDefaultController() *DefaultController {
 	return &DefaultController{}
 }
 
+// List 列表
 func (t *DefaultController) List(c *fiber.Ctx) error {
 	// 实际业务调用
 	api, err := service.NewDefaultService().List()
@@ -25,9 +25,10 @@ func (t *DefaultController) List(c *fiber.Ctx) error {
 		initalize.Log.Info(err)
 		return c.Status(500).JSON(t.Fail(err))
 	}
-	return c.JSON(t.Ok(api)) // => ✋ register
+	return c.JSON(t.Ok(api))
 }
 
+// Category 详情
 func (t *DefaultController) Category(c *fiber.Ctx) error {
 	// 初始化参数结构体
 	categoryForm := form.CategoryRequest{}
@@ -42,5 +43,5 @@ func (t *DefaultController) Category(c *fiber.Ctx) error {
 		initalize.Log.Info(err)
 		return c.Status(500).JSON(t.Fail(err, 309))
 	}
-	return c.JSON(t.Ok(api)) // => ✋ Login
+	return c.JSON(t.Ok(api))
 }

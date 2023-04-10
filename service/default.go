@@ -11,6 +11,7 @@ func NewDefaultService() *Default {
 	return &Default{}
 }
 
+// List 列表
 func (t *Default) List() ([]models.Course, error) {
 	list, err := models.NewCourse().List()
 	if err != nil {
@@ -19,6 +20,7 @@ func (t *Default) List() ([]models.Course, error) {
 	return list, nil
 }
 
+// Category 详情
 func (t *Default) Category(c v1.CategoryRequest) (*models.Course, error) {
 	list, err := models.NewCourse().Category(c.Id)
 	if err != nil {
