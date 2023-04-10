@@ -1,7 +1,6 @@
 package initalize
 
 import (
-	"fmt"
 	"os"
 	"time"
 
@@ -14,7 +13,6 @@ import (
 var Log *zap.SugaredLogger
 
 func InitDatabaseLogger() {
-	fmt.Println("执行啦")
 	encoder := getEncoder()
 	sync := getLogWriter()
 	core := zapcore.NewCore(encoder, sync, zapcore.InfoLevel)

@@ -6,11 +6,11 @@ app:
 # mysql配置
 mysql:
   enable: true
-  user: root
-  password: 123456
-  host: 127.0.0.1
-  port: 3306
-  dbname: qingshanshui
+  user: "root"
+  password: "123456"
+  host: "127.0.0.1"
+  port: "3306"
+  dbname: "qingshanshui"
 
 # redis配置
 redis:
@@ -34,9 +34,6 @@ zap:
   #是否压缩/归档旧文件
   compress: false
 
-os:
-  domain: "http://127.0.0.1:8000/public/"
-
 #单位(60秒*60*24) 24小时
 jwt:
   secret: "whatthefuck123weishenmebuneng123"
@@ -45,4 +42,3 @@ jwt:
 md5:
   hash: "asdsad!#$FREWE12314"
 
-debug: true

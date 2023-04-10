@@ -9,10 +9,12 @@ import (
 )
 
 func init() {
+	// 接收外部传参
 	var mode string
 	flag.StringVar(&mode, "mode", "dev", "开发dev，生产prod")
 	flag.Parse()
-	workDir, _ := os.Getwd()
+
+	workDir, _ := os.Getwd()                 // 获取当前工作目录
 	viper.SetConfigName("config." + mode)    // 配置文件名称
 	viper.SetConfigType("yml")               // 配置文件类型
 	viper.AddConfigPath(workDir + "/config") // 配置文件路径
