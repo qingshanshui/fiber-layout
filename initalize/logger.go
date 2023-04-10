@@ -17,6 +17,7 @@ func InitDatabaseLogger() {
 	sync := getLogWriter()
 	core := zapcore.NewCore(encoder, sync, zapcore.InfoLevel)
 	Log = zap.New(core, zap.AddCaller()).Sugar()
+	// TODO 错误处理 有问题
 	defer Log.Sync()
 }
 

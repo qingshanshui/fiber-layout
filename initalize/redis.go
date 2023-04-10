@@ -14,9 +14,7 @@ func initDatabaseRedis() {
 		Password: viper.GetString("Redis.Password"),
 		DB:       viper.GetInt("Redis.Database"),
 	})
-	var ctx = context.Background()
-	_, err := Rdb.Ping(ctx).Result()
-
+	_, err := Rdb.Ping(context.Background()).Result()
 	if err != nil {
 		panic("Redis 链接 失败：" + err.Error())
 	}
