@@ -19,10 +19,6 @@ go mod download
 go run main.go #默认启动开发环境
 go run main.go -mode dev #开发环境
 go run main.go -mode prod #生产环境
-
-# 项目起来后执行下面命令访问示例路由
-curl "http://127.0.0.1:3000/v1/register?username=admin&password=132456"
-# {"code": 1000,"data": "✋ ---- admin","msg": "操作成功"}
 ```
 
 ### 部署
