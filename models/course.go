@@ -14,6 +14,7 @@ func NewCourse() *Course {
 	return &Course{}
 }
 
+// List 列表
 func (t *Course) List() ([]Course, error) {
 	var result []Course
 	if err := initalize.DB.Raw("select * from Course LIMIT 10").Find(&result).Error; err != nil {
@@ -22,6 +23,7 @@ func (t *Course) List() ([]Course, error) {
 	return result, nil
 }
 
+// Category 详情
 func (t *Course) Category(id string) (*Course, error) {
 	if err := initalize.DB.Raw("select * from Course WHERE CId = ? LIMIT 10", id).Find(t).Error; err != nil {
 		return nil, err

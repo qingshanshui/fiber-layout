@@ -5,8 +5,7 @@ import (
 	v1 "fiber-layout/validator/form"
 )
 
-type Default struct {
-}
+type Default struct{}
 
 func NewDefaultService() *Default {
 	return &Default{}
