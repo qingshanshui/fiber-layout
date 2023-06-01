@@ -33,7 +33,7 @@ go get -u github.com/beego/bee/v2
 bee pack -be GOOS=linux
 
 # 服务器 nohup工具 跑起来 (在直接放到 服务器跑就行啦)
-nohup ./fiber-layout
+nohup ./fiber-layout -mode prod
 
 # 2. go打包
 
@@ -44,7 +44,7 @@ $ENV:GOOS="linux"
 go build mian.go
 
 # 服务器 nohup工具 跑起来 (在直接放到 服务器跑就行啦)
-nohup ./fiber-layout
+nohup ./fiber-layout -mode prod
 ```
 
 ### 目录结构
