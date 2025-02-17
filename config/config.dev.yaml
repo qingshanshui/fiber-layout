@@ -1,46 +1,57 @@
 # 应用配置
 app:
-  host: "127.0.0.1"
-  port: ":8000"
+  name: "fiber-layout"
+  mode: "dev"
+  port: 3000
 
-# mysql配置
+# 数据库配置
 mysql:
-  enable: true
-  user: "root"
-  password: "123456"
-  host: "127.0.0.1"
-  port: "3306"
-  dbname: "qingshanshui"
+  host: "10.0.0.5"
+  port: 3306
+  username: "root"
+  password: "xh87bxaT15sLQgR"
+  database: "fiber_layout"
 
 # redis配置
 redis:
-  enable: true
-  host: "127.0.0.1"
+  enable: false
+  host: "10.0.0.5"
   port: "6379"
-  database: 1
-  password: ""
+  database: 0
+  password: "lLQpoNUu7QnfWsZ"
 
 # 日志配置
-zap:
-  enable: true
-  #日志文件的位置，也就是路径
-  filename: "./logs/log.txt"
-  #在进行切割之前，日志文件的最大大小（以MB为单位）
-  maxSize: 10
-  #保留旧文件的最大个数
-  maxBackups: 10
-  #保留旧文件的最大天数
-  maxAges: 180
-  #是否压缩/归档旧文件
-  compress: false
+log:
+  level: "debug"
+  filename: "./logs/app.log"
+  max_size: 100    # MB
+  max_backups: 30
+  max_age: 7       # 天
+  compress: true
 
-#单位(60秒*60*24) 24小时
+# JWT配置
 jwt:
-  secret: "whatthefuck123weishenmebuneng123"
-  expire: 86400
+  secret: "your-secret-key"
+  expire: 86400  # 24小时
 
 md5:
   hash: "asdsad!#$FREWE12314"
 
 # true是dev环境,false是生产环境
 debug: true
+
+# rabbitmq配置
+rabbitmq:
+  enable: true
+  username: "jOTBmYEprf28Seki"
+  password: "Ogga7FS)MM$44EmM"
+  host: "10.0.0.5"
+  port: "5672"
+
+# 邮件配置
+email:
+  host: "smtp.gmail.com"
+  port: 587
+  username: "your-email@gmail.com"
+  password: "your-app-password"
+  from: "Your App <your-email@gmail.com>"

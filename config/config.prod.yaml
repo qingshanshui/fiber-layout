@@ -1,45 +1,57 @@
 # 应用配置
 app:
-  host: "127.0.0.1"
-  port: ":8000"
+  name: "fiber-layout"
+  mode: "prod"
+  port: 3000
 
-# mysql配置
+# 数据库配置
 mysql:
-  enable: true
-  user: "root"
-  password: "123456"
-  host: "127.0.0.1"
-  port: "3306"
-  dbname: "qingshanshui"
+  host: "localhost"
+  port: 3306
+  username: "root"
+  password: "your-prod-password"
+  database: "fiber_layout"
 
 # redis配置
 redis:
   enable: true
-  host: "127.0.0.1"
-  port: "6379"
-  database: 1
-  password: ""
+  host: "localhost"
+  port: 6379
+  database: 0
+  password: "your-redis-password"
 
 # 日志配置
-zap:
-  #日志文件的位置，也就是路径
-  filename: "./logs/log.txt"
-  #在进行切割之前，日志文件的最大大小（以MB为单位）
-  maxSize: 10
-  #保留旧文件的最大个数
-  maxBackups: 10
-  #保留旧文件的最大天数
-  maxAges: 180
-  #是否压缩/归档旧文件
-  compress: false
+log:
+  level: "info"
+  filename: "./logs/app.log"
+  max_size: 100    # MB
+  max_backups: 30
+  max_age: 30      # 天
+  compress: true
 
-#单位(60秒*60*24) 24小时
+# JWT配置
 jwt:
-  secret: "whatthefuck123weishenmebuneng123"
-  expire: 86400
+  secret: "your-production-secret-key"
+  expire: 86400  # 24小时
 
 md5:
-  hash: "asdsad!#$FREWE12314"
+  hash: "your-production-hash-key"
 
 # true是dev环境,false是生产环境
 debug: false
+
+# rabbitmq配置
+rabbitmq:
+  enable: true
+  username: "prod-user"
+  password: "prod-password"
+  host: "localhost"
+  port: 5672
+
+# 邮件配置
+email:
+  host: "smtp.gmail.com"
+  port: 587
+  username: "your-production-email@gmail.com"
+  password: "your-production-app-password"
+  from: "Your Production App <your-production-email@gmail.com>"
