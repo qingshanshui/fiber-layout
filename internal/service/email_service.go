@@ -1,10 +1,10 @@
 package service
 
 import (
+	"NextEraAbyss/FiberForge/pkg/email"
+	"NextEraAbyss/FiberForge/pkg/logger"
+	"NextEraAbyss/FiberForge/pkg/rabbitmq"
 	"encoding/json"
-	"wat.ink/layout/fiber/pkg/logger"
-	"wat.ink/layout/fiber/pkg/rabbitmq"
-	"wat.ink/layout/fiber/pkg/email"
 )
 
 const (
@@ -88,4 +88,4 @@ func handleEmailMessage(body []byte) error {
 		"subject", msg.Subject,
 	)
 	return nil
-} 
+}

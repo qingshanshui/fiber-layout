@@ -1,11 +1,12 @@
 package validator
 
 import (
+	"NextEraAbyss/FiberForge/pkg/errors"
+	"NextEraAbyss/FiberForge/pkg/logger"
+	"strings"
+
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v3"
-	"strings"
-	"wat.ink/layout/fiber/pkg/errors"
-	"wat.ink/layout/fiber/pkg/logger"
 )
 
 var validate = validator.New()
@@ -71,4 +72,4 @@ func formatValidationError(e validator.FieldError) string {
 	default:
 		return e.Field() + "验证失败：" + e.Tag()
 	}
-} 
+}

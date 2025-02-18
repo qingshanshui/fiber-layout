@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"NextEraAbyss/FiberForge/pkg/config"
 	"bytes"
 	"crypto/aes"
 	"crypto/cipher"
@@ -15,7 +16,6 @@ import (
 	"strings"
 	"time"
 	"unicode"
-	"wat.ink/layout/fiber/pkg/config"
 )
 
 const (
@@ -43,7 +43,7 @@ func GenerateSalt(length int) string {
 func GeneratePassword(password, salt string) string {
 	// 将密码和盐值拼接
 	str := password + salt + config.Conf.MD5.Hash
-	
+
 	// 计算 MD5 哈希
 	h := md5.New()
 	h.Write([]byte(str))
@@ -61,7 +61,7 @@ func Paginate(page, pageSize int) (offset, limit int) {
 	if pageSize > 100 {
 		pageSize = 100
 	}
-	
+
 	offset = (page - 1) * pageSize
 	limit = pageSize
 	return
@@ -80,11 +80,11 @@ func ValidateEmail(email string) bool {
 // ValidatePassword 验证密码强度
 func ValidatePasswordStrength(password string) bool {
 	var (
-		hasNumber    = false
-		hasLower     = false
-		hasUpper     = false
-		hasSpecial   = false
-		length       = len(password)
+		hasNumber  = false
+		hasLower   = false
+		hasUpper   = false
+		hasSpecial = false
+		length     = len(password)
 	)
 
 	if length < 8 {
@@ -180,19 +180,19 @@ func EncryptAES(data []byte, key []byte) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	
+
 	// 创建随机IV
 	iv := make([]byte, aes.BlockSize)
 	if _, err := io.ReadFull(crand.Reader, iv); err != nil {
 		return nil, err
 	}
-	
+
 	// 加密
 	mode := cipher.NewCBCEncrypter(block, iv)
 	padded := pkcs7Padding(data, aes.BlockSize)
 	encrypted := make([]byte, len(padded))
 	mode.CryptBlocks(encrypted, padded)
-	
+
 	// 拼接IV和密文
 	return append(iv, encrypted...), nil
 }
@@ -203,18 +203,18 @@ func DecryptAES(data []byte, key []byte) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	
+
 	if len(data) < aes.BlockSize {
 		return nil, errors.New("ciphertext too short")
 	}
-	
+
 	iv := data[:aes.BlockSize]
 	encrypted := data[aes.BlockSize:]
-	
+
 	mode := cipher.NewCBCDecrypter(block, iv)
 	decrypted := make([]byte, len(encrypted))
 	mode.CryptBlocks(decrypted, encrypted)
-	
+
 	return pkcs7UnPadding(decrypted)
 }
 
@@ -236,4 +236,4 @@ func pkcs7UnPadding(data []byte) ([]byte, error) {
 		return nil, errors.New("invalid padding size")
 	}
 	return data[:length-padding], nil
-} 
+}

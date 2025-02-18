@@ -1,9 +1,10 @@
 package middleware
 
 import (
-	"github.com/gofiber/fiber/v3"
+	"NextEraAbyss/FiberForge/pkg/logger"
 	"time"
-	"wat.ink/layout/fiber/pkg/logger"
+
+	"github.com/gofiber/fiber/v3"
 )
 
 // LoggerMiddleware 日志中间件
@@ -30,4 +31,4 @@ func LoggerMiddleware() fiber.Handler {
 
 		return err
 	}
-} 
+}

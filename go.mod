@@ -1,4 +1,4 @@
-module wat.ink/layout/fiber
+module NextEraAbyss/FiberForge
 
 go 1.23
 

@@ -1,12 +1,13 @@
 package redis
 
 import (
+	"NextEraAbyss/FiberForge/pkg/config"
+	"NextEraAbyss/FiberForge/pkg/logger"
 	"context"
 	"fmt"
-	"github.com/go-redis/redis/v8"
 	"time"
-	"wat.ink/layout/fiber/pkg/config"
-	"wat.ink/layout/fiber/pkg/logger"
+
+	"github.com/go-redis/redis/v8"
 )
 
 var (
@@ -85,4 +86,4 @@ func Close() error {
 		return nil
 	}
 	return Client.Close()
-} 
+}

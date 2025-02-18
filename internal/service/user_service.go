@@ -1,12 +1,12 @@
 package service
 
 import (
-	"wat.ink/layout/fiber/api/v1/request"
-	"wat.ink/layout/fiber/api/v1/response"
-	"wat.ink/layout/fiber/internal/repository"
-	"wat.ink/layout/fiber/pkg/utils"
-	"wat.ink/layout/fiber/pkg/errors"
-	"wat.ink/layout/fiber/pkg/logger"
+	"NextEraAbyss/FiberForge/api/v1/request"
+	"NextEraAbyss/FiberForge/api/v1/response"
+	"NextEraAbyss/FiberForge/internal/repository"
+	"NextEraAbyss/FiberForge/pkg/errors"
+	"NextEraAbyss/FiberForge/pkg/logger"
+	"NextEraAbyss/FiberForge/pkg/utils"
 )
 
 type UserService struct {
@@ -23,7 +23,7 @@ func NewUserService() *UserService {
 
 func (s *UserService) List(req request.UserListRequest) (*response.UserListResponse, error) {
 	offset, limit := utils.Paginate(req.Page, req.PageSize)
-	
+
 	users, total, err := s.repo.List(offset, limit, req.Keyword)
 	if err != nil {
 		return nil, err
@@ -68,7 +68,7 @@ func (s *UserService) Create(req request.UserCreateRequest) (*response.UserRespo
 		"感谢您注册我们的服务！",
 	)
 	if err != nil {
-		logger.Warn("Failed to send welcome email", 
+		logger.Warn("Failed to send welcome email",
 			"email", req.Email,
 			"error", err,
 		)
@@ -139,4 +139,4 @@ func (s *UserService) Update(id uint, req request.UserUpdateRequest) (*response.
 // Delete 删除用户
 func (s *UserService) Delete(id uint) error {
 	return s.repo.Delete(id)
-} 
+}

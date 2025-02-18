@@ -1,12 +1,13 @@
 package rabbitmq
 
 import (
+	"NextEraAbyss/FiberForge/pkg/config"
+	"NextEraAbyss/FiberForge/pkg/logger"
 	"context"
 	"fmt"
-	amqp "github.com/rabbitmq/amqp091-go"
 	"time"
-	"wat.ink/layout/fiber/pkg/config"
-	"wat.ink/layout/fiber/pkg/logger"
+
+	amqp "github.com/rabbitmq/amqp091-go"
 )
 
 var (
@@ -122,4 +123,4 @@ func Close() {
 	if conn != nil {
 		conn.Close()
 	}
-} 
+}

@@ -1,10 +1,11 @@
 package database
 
 import (
+	"NextEraAbyss/FiberForge/pkg/config"
 	"fmt"
+
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"wat.ink/layout/fiber/pkg/config"
 )
 
 var (
@@ -27,4 +28,4 @@ func Init() {
 	if err != nil {
 		panic("failed to connect database")
 	}
-} 
+}

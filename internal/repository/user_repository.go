@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"wat.ink/layout/fiber/internal/model"
-	"wat.ink/layout/fiber/pkg/database"
+	"NextEraAbyss/FiberForge/internal/model"
+	"NextEraAbyss/FiberForge/pkg/database"
 )
 
 type UserRepository struct{}
@@ -14,21 +14,21 @@ func NewUserRepository() *UserRepository {
 func (r *UserRepository) List(offset, limit int, keyword string) ([]model.User, int64, error) {
 	var users []model.User
 	var total int64
-	
+
 	query := database.DB.Model(&model.User{})
-	
+
 	if keyword != "" {
 		query = query.Where("username LIKE ? OR email LIKE ?", "%"+keyword+"%", "%"+keyword+"%")
 	}
-	
+
 	if err := query.Count(&total).Error; err != nil {
 		return nil, 0, err
 	}
-	
+
 	if err := query.Offset(offset).Limit(limit).Find(&users).Error; err != nil {
 		return nil, 0, err
 	}
-	
+
 	return users, total, nil
 }
 
@@ -108,4 +108,4 @@ func (r *UserRepository) Update(id uint, params UpdateUserParams) (*model.User, 
 // Delete 删除用户
 func (r *UserRepository) Delete(id uint) error {
 	return database.DB.Delete(&model.User{}, id).Error
-} 
+}

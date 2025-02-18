@@ -1,11 +1,12 @@
 package logger
 
 import (
+	"NextEraAbyss/FiberForge/pkg/config"
+	"os"
+
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/natefinch/lumberjack.v2"
-	"os"
-	"wat.ink/layout/fiber/pkg/config"
 )
 
 var log *zap.Logger
@@ -82,4 +83,4 @@ func Warn(msg string, keysAndValues ...interface{}) {
 // Fatal 记录 fatal 级别的日志
 func Fatal(msg string, keysAndValues ...interface{}) {
 	log.Sugar().Fatalw(msg, keysAndValues...)
-} 
+}

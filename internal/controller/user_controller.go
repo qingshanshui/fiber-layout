@@ -3,12 +3,13 @@ package controller
 import (
 	"strconv"
 
+	"NextEraAbyss/FiberForge/api/v1/request"
+	"NextEraAbyss/FiberForge/internal/service"
+	"NextEraAbyss/FiberForge/pkg/errors"
+	"NextEraAbyss/FiberForge/pkg/response"
+	"NextEraAbyss/FiberForge/pkg/validator"
+
 	"github.com/gofiber/fiber/v3"
-	"wat.ink/layout/fiber/api/v1/request"
-	"wat.ink/layout/fiber/internal/service"
-	"wat.ink/layout/fiber/pkg/errors"
-	"wat.ink/layout/fiber/pkg/response"
-	"wat.ink/layout/fiber/pkg/validator"
 )
 
 type UserController struct {

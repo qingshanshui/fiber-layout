@@ -1,9 +1,9 @@
 package database
 
 import (
-	"wat.ink/layout/fiber/internal/model"
-	"wat.ink/layout/fiber/pkg/logger"
-	"wat.ink/layout/fiber/pkg/utils"
+	"NextEraAbyss/FiberForge/internal/model"
+	"NextEraAbyss/FiberForge/pkg/logger"
+	"NextEraAbyss/FiberForge/pkg/utils"
 )
 
 // AutoMigrate 自动迁移数据库表结构
@@ -44,7 +44,7 @@ func Seed() {
 		}
 
 		if err := DB.Create(admin).Error; err != nil {
-			logger.Error("Failed to create admin user", 
+			logger.Error("Failed to create admin user",
 				"error", err,
 				"username", admin.Username,
 			)
@@ -60,4 +60,4 @@ func Seed() {
 	}
 
 	logger.Info("Database seeding completed")
-} 
+}

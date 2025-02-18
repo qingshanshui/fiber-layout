@@ -1,10 +1,11 @@
 package middleware
 
 import (
+	"NextEraAbyss/FiberForge/pkg/errors"
+	"NextEraAbyss/FiberForge/pkg/jwt"
+	"NextEraAbyss/FiberForge/pkg/logger"
+
 	"github.com/gofiber/fiber/v3"
-	"wat.ink/layout/fiber/pkg/errors"
-	"wat.ink/layout/fiber/pkg/jwt"
-	"wat.ink/layout/fiber/pkg/logger"
 )
 
 // AuthMiddleware 认证中间件

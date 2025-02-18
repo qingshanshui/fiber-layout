@@ -6,14 +6,15 @@ import (
 	"os/signal"
 	"syscall"
 
+	"NextEraAbyss/FiberForge/internal/router"
+	"NextEraAbyss/FiberForge/pkg/config"
+	"NextEraAbyss/FiberForge/pkg/database"
+	"NextEraAbyss/FiberForge/pkg/email"
+	"NextEraAbyss/FiberForge/pkg/logger"
+	"NextEraAbyss/FiberForge/pkg/rabbitmq"
+	"NextEraAbyss/FiberForge/pkg/redis"
+
 	"github.com/gofiber/fiber/v3"
-	"wat.ink/layout/fiber/internal/router"
-	"wat.ink/layout/fiber/pkg/config"
-	"wat.ink/layout/fiber/pkg/database"
-	"wat.ink/layout/fiber/pkg/email"
-	"wat.ink/layout/fiber/pkg/logger"
-	"wat.ink/layout/fiber/pkg/rabbitmq"
-	"wat.ink/layout/fiber/pkg/redis"
 )
 
 func main() {

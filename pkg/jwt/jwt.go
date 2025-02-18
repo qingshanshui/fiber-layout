@@ -1,9 +1,10 @@
 package jwt
 
 import (
-	"github.com/dgrijalva/jwt-go"
+	"NextEraAbyss/FiberForge/pkg/config"
 	"time"
-	"wat.ink/layout/fiber/pkg/config"
+
+	"github.com/dgrijalva/jwt-go"
 )
 
 var jwtSecret []byte
@@ -45,4 +46,4 @@ func VerifyToken(tokenString string) (*Claims, error) {
 	}
 
 	return nil, jwt.ErrSignatureInvalid
-} 
+}

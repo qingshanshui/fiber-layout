@@ -1,10 +1,10 @@
 package email
 
 import (
+	"NextEraAbyss/FiberForge/pkg/config"
+	"NextEraAbyss/FiberForge/pkg/logger"
 	"fmt"
 	"net/smtp"
-	"wat.ink/layout/fiber/pkg/config"
-	"wat.ink/layout/fiber/pkg/logger"
 )
 
 type EmailConfig struct {
@@ -54,4 +54,4 @@ func SendEmail(to, subject, body string) error {
 		"subject", subject,
 	)
 	return nil
-} 
+}

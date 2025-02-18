@@ -1,6 +1,6 @@
 # 应用配置
 app:
-  name: "fiber-layout"
+  name: "NextEraAbyss/FiberForge"
   mode: "dev"
   port: 3000
 

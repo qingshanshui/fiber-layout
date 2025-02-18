@@ -1,10 +1,11 @@
 package router
 
 import (
+	v1 "NextEraAbyss/FiberForge/api/v1"
+	"NextEraAbyss/FiberForge/internal/controller"
+	"NextEraAbyss/FiberForge/internal/middleware"
+
 	"github.com/gofiber/fiber/v3"
-	v1 "wat.ink/layout/fiber/api/v1"
-	"wat.ink/layout/fiber/internal/controller"
-	"wat.ink/layout/fiber/internal/middleware"
 )
 
 func SetupRoutes(app *fiber.App) {
