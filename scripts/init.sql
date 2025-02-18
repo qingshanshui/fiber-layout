@@ -1,7 +1,7 @@
 -- 创建数据库
-CREATE DATABASE IF NOT EXISTS fiber_layout DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE IF NOT EXISTS FiberForge DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-USE fiber_layout;
+USE FiberForge;
 
 -- 创建用户表
 CREATE TABLE IF NOT EXISTS users (

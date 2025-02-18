@@ -10,7 +10,7 @@ mysql:
   port: 3306
   username: "root"
   password: "xh87bxaT15sLQgR"
-  database: "fiber_layout"
+  database: "FiberForge"
 
 # redis配置
 redis:

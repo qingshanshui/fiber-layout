@@ -16,8 +16,8 @@ type UserService struct {
 
 func NewUserService() *UserService {
 	return &UserService{
-		repo:         repository.NewUserRepository(),
-		emailService: NewEmailService(),
+		repo: repository.NewUserRepository(),
+		// emailService: NewEmailService(),
 	}
 }
 
